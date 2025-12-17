@@ -1,0 +1,9 @@
+global:
+  scrape_interval: 5s  # Ambil data setiap 5 detik
+
+scrape_configs:
+  - job_name: 'loan_prediction_api'
+    static_configs:
+      - targets: ['host.docker.internal:5000'] 
+        # 'host.docker.internal' artinya Prometheus (di dalam Docker) 
+        # akan ngintip ke komputer host (laptop kamu) di port 5000
