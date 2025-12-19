@@ -25,7 +25,7 @@ def train_eval_model():
     X_train, y_train, X_test, y_test = load_data()
     if X_train is None: return
 
-    # Set tracking uri ke lokal
+    # KONFIGURASI MLFLOW (LOKAL)
     mlflow.set_tracking_uri("") 
     mlflow.set_experiment("Latihan Credit Scoring")
     
@@ -36,11 +36,12 @@ def train_eval_model():
         model = RandomForestClassifier(n_estimators=100, random_state=42)
         model.fit(X_train, y_train)
         
+        # Evaluasi
         preds = model.predict(X_test)
         acc = accuracy_score(y_test, preds)
         print(f"Akurasi: {acc:.4f}")
         
-        # Simpan model ke file pickle
+        # Simpan model ke file pickle (PENTING untuk Server nanti)
         with open("best_model_tuned.pkl", "wb") as f:
             pickle.dump(model, f)
             print("Model berhasil disimpan ke best_model_tuned.pkl")
