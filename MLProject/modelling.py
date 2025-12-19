@@ -5,7 +5,7 @@ import mlflow
 import mlflow.sklearn
 import pickle
 
-# Load Data
+# FUNGSI LOAD DATA
 def load_data():
     try:
         df_train = pd.read_csv('loan_data_train_processed.csv')
@@ -18,17 +18,18 @@ def load_data():
         
         return X_train, y_train, X_test, y_test
     except FileNotFoundError:
-        print("File CSV tidak ditemukan.")
+        print("File CSV tidak ditemukan. Pastikan file csv ada di folder Membangun_model!")
         return None, None, None, None
 
 def train_eval_model():
     X_train, y_train, X_test, y_test = load_data()
     if X_train is None: return
 
-    # KONFIGURASI MLFLOW (LOKAL)
+    # Konfigurasi MLflow (Lokal)
     mlflow.set_tracking_uri("") 
     mlflow.set_experiment("Latihan Credit Scoring")
     
+    # Gunakan Autolog
     mlflow.autolog()
 
     with mlflow.start_run():
@@ -41,7 +42,7 @@ def train_eval_model():
         acc = accuracy_score(y_test, preds)
         print(f"Akurasi: {acc:.4f}")
         
-        # Simpan model ke file pickle (PENTING untuk Server nanti)
+        # Simpan model
         with open("best_model_tuned.pkl", "wb") as f:
             pickle.dump(model, f)
             print("Model berhasil disimpan ke best_model_tuned.pkl")
