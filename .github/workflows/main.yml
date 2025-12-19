@@ -30,7 +30,8 @@ jobs:
         MLFLOW_TRACKING_PASSWORD: ${{ secrets.MLFLOW_TRACKING_PASSWORD }}
       run: |
         cd MLProject
-        python modelling.py
+        # Ini perbaikannya: Pakai MLflow Run
+        mlflow run . --no-conda
 
     - name: Login to Docker Hub
       uses: docker/login-action@v2
