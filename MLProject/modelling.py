@@ -5,10 +5,9 @@ import mlflow
 import mlflow.sklearn
 import pickle
 
-# Load Data Sesuai path file csv
+# Load Data
 def load_data():
     try:
-        # Pastikan file csv ini ada di folder yang sama
         df_train = pd.read_csv('loan_data_train_processed.csv')
         df_test = pd.read_csv('loan_data_test_processed.csv')
         
@@ -26,28 +25,24 @@ def train_eval_model():
     X_train, y_train, X_test, y_test = load_data()
     if X_train is None: return
 
-    # --- KONFIGURASI MLFLOW ---
-    # Kita set nama eksperimen biar rapi di Dashboard
+    # Ke database sqlite karena Dashboard
+    mlflow.set_tracking_uri("sqlite:///mlflow.db")
     mlflow.set_experiment("Latihan Credit Scoring")
     
-    # Aktifkan Autolog (biar otomatis catat parameter & metrik)
     mlflow.autolog()
 
-    # Mulai Run
     with mlflow.start_run():
         print("Training Model...")
         model = RandomForestClassifier(n_estimators=100, random_state=42)
         model.fit(X_train, y_train)
         
-        # Evaluasi
         preds = model.predict(X_test)
         acc = accuracy_score(y_test, preds)
         print(f"Akurasi: {acc:.4f}")
         
-        # Simpan model ke file pickle lokal (PENTING untuk Server nanti)
         with open("best_model_tuned.pkl", "wb") as f:
             pickle.dump(model, f)
-            print("Model berhasil disimpan ke best_model_tuned.pkl")
+            print("Model saved.")
 
 if __name__ == "__main__":
     train_eval_model()
