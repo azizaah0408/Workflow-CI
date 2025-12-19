@@ -1,7 +1,6 @@
 import pandas as pd
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.metrics import accuracy_score
-from sklearn.model_selection import train_test_split
 import mlflow
 import mlflow.sklearn
 import pickle
@@ -9,6 +8,7 @@ import pickle
 # Load Data Sesuai path file csv
 def load_data():
     try:
+        # Pastikan file csv ini ada di folder yang sama
         df_train = pd.read_csv('loan_data_train_processed.csv')
         df_test = pd.read_csv('loan_data_test_processed.csv')
         
@@ -26,7 +26,11 @@ def train_eval_model():
     X_train, y_train, X_test, y_test = load_data()
     if X_train is None: return
 
-    # AKTIFKAN AUTOLOG
+    # --- KONFIGURASI MLFLOW ---
+    # Kita set nama eksperimen biar rapi di Dashboard
+    mlflow.set_experiment("Latihan Credit Scoring")
+    
+    # Aktifkan Autolog (biar otomatis catat parameter & metrik)
     mlflow.autolog()
 
     # Mulai Run
@@ -40,9 +44,10 @@ def train_eval_model():
         acc = accuracy_score(y_test, preds)
         print(f"Akurasi: {acc:.4f}")
         
-        # Simpan model ke file pickle lokal uga
+        # Simpan model ke file pickle lokal (PENTING untuk Server nanti)
         with open("best_model_tuned.pkl", "wb") as f:
             pickle.dump(model, f)
+            print("Model berhasil disimpan ke best_model_tuned.pkl")
 
 if __name__ == "__main__":
     train_eval_model()
