@@ -58,4 +58,4 @@ def train_and_save():
         mlflow.sklearn.log_model(model, "model")
 
 if __name__ == "__main__":
-    train_and_save
+    train_and_save()
