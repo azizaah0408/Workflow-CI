@@ -18,18 +18,17 @@ def load_data():
         
         return X_train, y_train, X_test, y_test
     except FileNotFoundError:
-        print("File CSV tidak ditemukan. Pastikan file csv ada di folder yang sama!")
+        print("File CSV tidak ditemukan.")
         return None, None, None, None
 
 def train_eval_model():
     X_train, y_train, X_test, y_test = load_data()
     if X_train is None: return
 
-    mlflow.set_experiment("Latihan Credit Scoring")
-    
-    # Gunakan Autolog
+    # Aktifkan Autolog
     mlflow.autolog()
 
+    # Mulai Run
     with mlflow.start_run():
         print("Training Model...")
         model = RandomForestClassifier(n_estimators=100, random_state=42)
