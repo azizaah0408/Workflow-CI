@@ -1,0 +1,43 @@
+artifact_path: file:///D:/Azizah/Kuliah/Tugas%20Dicoding/Workflow-CI/MLProject/mlruns/193676983698676541/models/m-d3f9b5b62380474cbcf21f68a9f0347e/artifacts
+flavors:
+  python_function:
+    env:
+      conda: conda.yaml
+      virtualenv: python_env.yaml
+    loader_module: mlflow.sklearn
+    model_path: model.pkl
+    predict_fn: predict
+    python_version: 3.13.7
+  sklearn:
+    code: null
+    pickled_model: model.pkl
+    serialization_format: cloudpickle
+    sklearn_version: 1.8.0
+is_signature_from_type_hint: false
+mlflow_version: 3.7.0
+model_id: m-d3f9b5b62380474cbcf21f68a9f0347e
+model_size_bytes: 1930368
+model_uuid: m-d3f9b5b62380474cbcf21f68a9f0347e
+prompts: null
+run_id: 04773c0610a7470ea91a77869ac2220a
+signature:
+  inputs: '[{"type": "double", "name": "ApplicantIncome", "required": true}, {"type":
+    "double", "name": "CoapplicantIncome", "required": true}, {"type": "double", "name":
+    "LoanAmount", "required": true}, {"type": "double", "name": "Loan_Amount_Term",
+    "required": true}, {"type": "double", "name": "Credit_History", "required": true},
+    {"type": "double", "name": "Gender_Female", "required": true}, {"type": "double",
+    "name": "Gender_Male", "required": true}, {"type": "double", "name": "Married_No",
+    "required": true}, {"type": "double", "name": "Married_Yes", "required": true},
+    {"type": "double", "name": "Dependents_0", "required": true}, {"type": "double",
+    "name": "Dependents_1", "required": true}, {"type": "double", "name": "Dependents_2",
+    "required": true}, {"type": "double", "name": "Dependents_3+", "required": true},
+    {"type": "double", "name": "Education_Graduate", "required": true}, {"type": "double",
+    "name": "Education_Not Graduate", "required": true}, {"type": "double", "name":
+    "Self_Employed_No", "required": true}, {"type": "double", "name": "Self_Employed_Yes",
+    "required": true}, {"type": "double", "name": "Property_Area_Rural", "required":
+    true}, {"type": "double", "name": "Property_Area_Semiurban", "required": true},
+    {"type": "double", "name": "Property_Area_Urban", "required": true}]'
+  outputs: '[{"type": "tensor", "tensor-spec": {"dtype": "int64", "shape": [-1]}}]'
+  params: null
+type_hint_from_example: false
+utc_time_created: '2025-12-19 07:38:37.963471'

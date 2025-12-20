@@ -1,0 +1,10 @@
+artifact_location: file:///D:/Azizah/Kuliah/Tugas%20Dicoding/Workflow-CI/MLProject/mlruns/193676983698676541/models/m-836469ab1049414582f505d71815e3b6/artifacts
+creation_timestamp: 1766129954919
+experiment_id: '193676983698676541'
+last_updated_timestamp: 1766129957853
+model_id: m-836469ab1049414582f505d71815e3b6
+model_type: null
+name: model
+source_run_id: a6395dd0255b458d8322a5a0ef6a0f5a
+status: 2
+status_message: null

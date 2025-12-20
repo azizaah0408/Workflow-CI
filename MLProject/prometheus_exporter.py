@@ -5,9 +5,15 @@ from prometheus_client import Counter, Histogram, generate_latest
 
 app = Flask(__name__)
 
-# METRICS
+# 3 METRICS
+# 1. Menghitung Total Request (Traffic)
 REQUEST_COUNT = Counter('request_count', 'Total Request Prediction', ['method', 'endpoint'])
+
+# 2. Menghitung Latency (Kecepatan)
 REQUEST_LATENCY = Histogram('request_latency_seconds', 'Latency of requests')
+
+# 3. Menghitung Hasil Prediksi (Business Metric - Approved vs Rejected)
+PREDICTION_COUNT = Counter('prediction_output_count', 'Result of Prediction', ['status'])
 
 # LOAD MODEL
 MODEL_PATH = 'best_model_tuned.pkl' 
@@ -29,8 +35,9 @@ def metrics():
     return Response(generate_latest(), mimetype='text/plain')
 
 @app.route('/predict', methods=['POST'])
-@REQUEST_LATENCY.time()
+@REQUEST_LATENCY.time() # Mengukur Metric 2 (Latency)
 def predict():
+    # Update Metric 1 (Count)
     REQUEST_COUNT.labels(method='POST', endpoint='/predict').inc()
     
     if not model:
@@ -42,6 +49,9 @@ def predict():
         prediction = model.predict(df)
         result = int(prediction[0])
         label = "Approved" if result == 1 else "Rejected"
+        
+        # Update Metric 3 (Prediction Result)
+        PREDICTION_COUNT.labels(status=label).inc()
         
         return jsonify({'prediction': result, 'status': label})
 

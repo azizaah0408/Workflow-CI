@@ -1,0 +1,22 @@
+digest: 3e3811d5
+name: dataset
+profile: '{"num_rows": 123, "num_elements": 2460}'
+schema: '{"mlflow_colspec": [{"type": "double", "name": "ApplicantIncome", "required":
+  true}, {"type": "double", "name": "CoapplicantIncome", "required": true}, {"type":
+  "double", "name": "LoanAmount", "required": true}, {"type": "double", "name": "Loan_Amount_Term",
+  "required": true}, {"type": "double", "name": "Credit_History", "required": true},
+  {"type": "double", "name": "Gender_Female", "required": true}, {"type": "double",
+  "name": "Gender_Male", "required": true}, {"type": "double", "name": "Married_No",
+  "required": true}, {"type": "double", "name": "Married_Yes", "required": true},
+  {"type": "double", "name": "Dependents_0", "required": true}, {"type": "double",
+  "name": "Dependents_1", "required": true}, {"type": "double", "name": "Dependents_2",
+  "required": true}, {"type": "double", "name": "Dependents_3+", "required": true},
+  {"type": "double", "name": "Education_Graduate", "required": true}, {"type": "double",
+  "name": "Education_Not Graduate", "required": true}, {"type": "double", "name":
+  "Self_Employed_No", "required": true}, {"type": "double", "name": "Self_Employed_Yes",
+  "required": true}, {"type": "double", "name": "Property_Area_Rural", "required":
+  true}, {"type": "double", "name": "Property_Area_Semiurban", "required": true},
+  {"type": "double", "name": "Property_Area_Urban", "required": true}]}'
+source: '{"tags": {"mlflow.user": "Azizah Naufal", "mlflow.source.name": "modelling.py",
+  "mlflow.source.type": "LOCAL", "mlflow.source.git.commit": "bbce6b0b74722e5be34661b7f3131cebfa6ddd36"}}'
+source_type: code
